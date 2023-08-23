@@ -1,20 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      CORHUILA
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="container">
+  <ion-card class="imgCard">
+    <img src="assets/img/android.png" />
+    <ion-card-header>
+      <div>
+        <ion-card-title>CORHUILA</ion-card-title>
+        <ion-card-subtitle>Programación móvil</ion-card-subtitle>
+      </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    </ion-card-header>
+
+    <ion-card-content>
+      Terminos y condiciones.....
+    </ion-card-content>
+  </ion-card>
+
+  <div style="text-align: center;">
+    <ion-checkbox [checked]="isChecked" (ionChange)="clickCheck()" labelPlacement="end">Terminos y
+      condiciones.....</ion-checkbox>
+    <ion-button expand="block" color="success" [disabled]="disableButton"
+      (click)="showMessage()">Registarme</ion-button>
+
   </div>
+
+
+
 </ion-content>

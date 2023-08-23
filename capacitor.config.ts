@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'com.co.corhuila',
   appName: 'my_first_app',
   webDir: 'www',
   server: {
