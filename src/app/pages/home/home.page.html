@@ -1,13 +1,14 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       CORHUILA
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
+ -->
+<app-header></app-header>
 <ion-content class="container">
-  <ion-card class="imgCard">
+  <!--   <ion-card class="imgCard">
     <img src="assets/img/android.png" />
     <ion-card-header>
       <div>
@@ -31,5 +32,19 @@
   </div>
 
 
+ -->
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Correo electrónico</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="login()">Iniciar sesión</ion-button>
 
 </ion-content>
