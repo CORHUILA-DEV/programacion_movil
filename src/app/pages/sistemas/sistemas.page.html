@@ -7,4 +7,16 @@
     Get Data
   </ion-button>
 
+  <div>
+    <ion-card *ngFor="let d of data" (click)="showInfo(user)">
+      <img [src]="d.url" alt="">
+      <ion-card-header>
+        <ion-card-title>{{d.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{d.description}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>

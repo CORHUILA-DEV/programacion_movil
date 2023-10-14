@@ -5,10 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
 
-  private url = 'https://jsonplaceholder.typicode.com/photos'
+  private url = 'https://api.slingacademy.com/v1/sample-data/photos?offset=5&limit=500'
 
   constructor(private httpClient: HttpClient) { }
-
 
   getData() {
     return this.httpClient.get(this.url)

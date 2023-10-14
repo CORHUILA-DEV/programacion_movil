@@ -9,7 +9,8 @@ import { ApiService } from 'src/app/providers/api.service';
 })
 export class SistemasPage implements OnInit {
   program: string = 'SOFTWARE'
-
+  data = [{ title: '', description: '', url: '' }]
+  pathImage = "assets/img/android.png"
   constructor(private apiService: ApiService,
     private loadingCtrl: LoadingController) { }
 
@@ -19,11 +20,12 @@ export class SistemasPage implements OnInit {
   async getData() {
     await this.showLoading()
     setTimeout(() => {
-      this.apiService.getData().subscribe(response => {
-        console.log(response)
+      this.apiService.getData().subscribe((response: any) => {
+        this.data = response.photos as []
+        console.log(this.data)
         this.closeLoading()
       })
-    }, 3000);
+    }, 2000);
 
   }
 
@@ -38,6 +40,10 @@ export class SistemasPage implements OnInit {
 
   closeLoading() {
     this.loadingCtrl.dismiss()
+  }
+
+  showInfo() {
+    alert("User : " + this.data.user)
   }
 
 }
