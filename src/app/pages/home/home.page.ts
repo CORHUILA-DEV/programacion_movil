@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
-
+import { PersonaEntity } from 'src/app/entities/persona.entity';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -24,27 +24,25 @@ export class HomePage {
     this.disableButton = this.isChecked ? false : true;
   }
 
-  /*   navigate() {
-      this.router.navigate(['/detail'])
-    } */
-
   validateAge(age: number) {
 
   }
 
   goToDetailPage(itemId: number) {
-    /*    this.navCtrl.navigateForward('/detail', {
-      queryParams: {
-        itemId: itemId
-      }
-    });
+    const dataUser: PersonaEntity = {
+      name: 'Carlos',
+      lastName: 'Cuellar',
+      address: 'Calle 45 #45',
+      cc: 344433443
+    }
 
- */
-    /*     const params: NavigationExtras = {
-          queryParams: { id: 123, name: 'Ejemplo' }
-        };
-        this.router.navigate(['/detail'], params);
-     */
+    console.log(dataUser)
+
+    const data: NavigationExtras = {
+      queryParams: { id: 123, name: 'Ejemplo' }
+    };
+    this.router.navigate(['/detail'], data);
+
   }
 
   login() {
