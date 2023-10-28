@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { ApiService } from 'src/app/providers/api.service';
+import { ClipboardService } from 'src/app/providers/clipboard.service';
 
 @Component({
   selector: 'app-sistemas',
@@ -11,8 +12,10 @@ export class SistemasPage implements OnInit {
   program: string = 'SOFTWARE'
   data = [{ title: '', description: '', url: '' }]
   pathImage = "assets/img/android.png"
+  file = ""
   constructor(private apiService: ApiService,
-    private loadingCtrl: LoadingController) { }
+    private loadingCtrl: LoadingController,
+    private clipboardService: ClipboardService) { }
 
   ngOnInit() {
   }
@@ -42,8 +45,8 @@ export class SistemasPage implements OnInit {
     this.loadingCtrl.dismiss()
   }
 
-  showInfo() {
-    alert("User : " + this.data.user)
+  showInfo(indice: number) {
+    this.clipboardService.copy(`La imagen seleccionada fue la No. ${indice.toString()}`);
   }
 
 }

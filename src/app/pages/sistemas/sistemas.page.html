@@ -8,7 +8,7 @@
   </ion-button>
 
   <div>
-    <ion-card *ngFor="let d of data" (click)="showInfo(user)">
+    <ion-card *ngFor="let d of data; let indice = index" (click)="showInfo(indice+1)">
       <img [src]="d.url" alt="">
       <ion-card-header>
         <ion-card-title>{{d.title}}</ion-card-title>
