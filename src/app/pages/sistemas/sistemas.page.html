@@ -1,0 +1,28 @@
+<app-header [programa]="program"></app-header>
+
+
+<ion-content>
+  <img [src]="imageElement" alt="">
+  <!--   <ion-button (click)="getData()" expand="block" shape="round">
+    Get Data
+  </ion-button>
+
+  <div>
+    <ion-card *ngFor="let d of data; let indice = index" (click)="showInfo(indice+1)">
+      <img [src]="d.url" alt="">
+      <ion-card-header>
+        <ion-card-title>{{d.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{d.description}}
+      </ion-card-content>
+    </ion-card>
+  </div> -->
+
+</ion-content>
+
+<ion-footer [translucent]="true" (click)="openCamera()">
+  <ion-toolbar>
+    <ion-title>Abrir camara</ion-title>
+  </ion-toolbar>
+</ion-footer>

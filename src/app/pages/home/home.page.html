@@ -1,0 +1,50 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      CORHUILA
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+ -->
+<app-header></app-header>
+<ion-content class="container">
+  <!--   <ion-card class="imgCard">
+    <img src="assets/img/android.png" />
+    <ion-card-header>
+      <div>
+        <ion-card-title>CORHUILA</ion-card-title>
+        <ion-card-subtitle>Programación móvil</ion-card-subtitle>
+      </div>
+
+    </ion-card-header>
+
+    <ion-card-content>
+      Terminos y condiciones.....
+    </ion-card-content>
+  </ion-card>
+
+  <div style="text-align: center;">
+    <ion-checkbox [checked]="isChecked" (ionChange)="clickCheck()" labelPlacement="end">Terminos y
+      condiciones.....</ion-checkbox>
+    <ion-button expand="block" color="success" [disabled]="disableButton"
+      (click)="showMessage()">Registarme</ion-button>
+
+  </div>
+
+
+ -->
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Correo electrónico</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="login()">Iniciar sesión</ion-button>
+
+</ion-content>

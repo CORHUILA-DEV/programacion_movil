@@ -1,0 +1,6 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar id="cabecera">
+    <ion-title *ngIf="isAdmin">CORHUILA- {{ ( isEngineer ? "Ing " : "") }} {{programa}}</ion-title>
+    <ion-title *ngIf="isAdmin">ADMIN</ion-title>
+  </ion-toolbar>
+</ion-header>

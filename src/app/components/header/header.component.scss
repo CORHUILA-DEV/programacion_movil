@@ -1,0 +1,13 @@
+/* 
+ion-toolbar{
+  --background-image: url("/assets/registro/opalo_verde.svg") !important;
+  --background-position: right -500px top 0px !important;
+  background-repeat: no-repeat !important;
+  background-size: 100px !important;
+} */
+#cabecera {
+  --background: #25ae4cae;
+  text-align: center;
+  --border-style: none;
+  border-bottom: 5px double #25ae4cae;
+}
