@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "794752149330",
+    "project_id": "app-corhuila",
+    "storage_bucket": "app-corhuila.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794752149330:android:7d00cb6fa02df2a5d5bc8b",
+        "android_client_info": {
+          "package_name": "com.co.corhuila"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk88hcPYHMsvLwT7tAb1GHWJd32BP3CVE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
