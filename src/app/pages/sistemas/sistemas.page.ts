@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { ApiService } from 'src/app/providers/api.service';
+import { CameraService } from 'src/app/providers/camera.service';
 import { ClipboardService } from 'src/app/providers/clipboard.service';
+import { DeviceInfoService } from 'src/app/providers/device-info.service';
 
 @Component({
   selector: 'app-sistemas',
@@ -13,11 +15,16 @@ export class SistemasPage implements OnInit {
   data = [{ title: '', description: '', url: '' }]
   pathImage = "assets/img/android.png"
   file = ""
+  imageElement = ''
   constructor(private apiService: ApiService,
     private loadingCtrl: LoadingController,
-    private clipboardService: ClipboardService) { }
+    private clipboardService: ClipboardService,
+    private deviceInfoService: DeviceInfoService,
+    private cameraService: CameraService) { }
 
   ngOnInit() {
+    this.showDeviceInfo()
+    this.showBatteryInfo()
   }
 
   async getData() {
@@ -47,6 +54,18 @@ export class SistemasPage implements OnInit {
 
   showInfo(indice: number) {
     this.clipboardService.copy(`La imagen seleccionada fue la No. ${indice.toString()}`);
+  }
+
+  showDeviceInfo() {
+    this.deviceInfoService.info()
+  }
+
+  showBatteryInfo() {
+    this.deviceInfoService.batteryInfo()
+  }
+
+  async openCamera() {
+    this.imageElement = await this.cameraService.takePicture()
   }
 
 }
