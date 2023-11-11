@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PersonRequest } from '../entities/person.request';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
+  constructor(private httpClient: HttpClient) {}
 
-  private url = 'https://api.slingacademy.com/v1/sample-data/photos?offset=5&limit=20'
-
-  constructor(private httpClient: HttpClient) { }
-
-  getData() {
-    return this.httpClient.get(this.url)
+  getData(params: PersonRequest): Observable<any> {
+    return this.httpClient.get(params.url + params.limit);
   }
 }
