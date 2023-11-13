@@ -7,7 +7,7 @@
     Get Data
   </ion-button>
 
-  <div>
+  <div *ngIf="data">
     <ion-card *ngFor="let d of data; let indice = index" (click)="showInfo(indice+1)">
       <img [src]="d.url" alt="">
       <ion-card-header>

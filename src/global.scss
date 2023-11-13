@@ -24,3 +24,12 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+.toast-icon {
+  font-size: 15px;
+}
+
+.toast-message {
+  flex-grow: 1;
+}

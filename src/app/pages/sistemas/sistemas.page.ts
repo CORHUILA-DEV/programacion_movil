@@ -1,10 +1,10 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
+import { DataPhotos, DetailPhotos } from 'src/app/entities/data-photos.entity';
 import { PersonInteractorService } from 'src/app/interactor/person.interactor.service';
 import { CameraService } from 'src/app/providers/camera.service';
 import { ClipboardService } from 'src/app/providers/clipboard.service';
 import { DeviceInfoService } from 'src/app/providers/device-info.service';
-import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-sistemas',
@@ -12,10 +12,8 @@ import { EventEmitter } from 'stream';
   styleUrls: ['./sistemas.page.scss'],
 })
 export class SistemasPage implements OnInit {
-  @Output()
-  propagar = new EventEmitter();
   program: string = 'SOFTWARE';
-  data = [{ title: '', description: '', url: '' }];
+  data: DetailPhotos[] = [];
   pathImage = 'assets/img/android.png';
   file = '';
   imageElement = '';
@@ -35,8 +33,17 @@ export class SistemasPage implements OnInit {
 
   async getData() {
     await this.showLoading();
-    this.data = await this.personInteractorService.getData();
-    console.log(this.data);
+    try {
+      const data = await this.personInteractorService.getData<DataPhotos>();
+      console.log('R4spuesta: ');
+      console.log(data);
+      this.data = data.photos;
+    } catch (error: any) {
+      console.log(`Pailas:::`);
+      console.log(error.message);
+      this.closeLoading();
+    }
+
     this.closeLoading();
   }
 
