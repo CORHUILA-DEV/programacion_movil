@@ -17,7 +17,9 @@ export class ApiService {
     let source$ = this.httpClient.get<T>(url);
     //const source$ = interval(2000).pipe(take(10));
     try {
-      return await lastValueFrom(source$);
+      const data = await lastValueFrom(source$);
+      this.showAlert(MessageToast.SUCCESS, 'success');
+      return data;
     } catch (error) {
       await this.handleError(error);
 
@@ -26,18 +28,18 @@ export class ApiService {
   }
 
   private handleError(error: any) {
-    this.showAlert(MessageToast.ERROR);
+    this.showAlert(MessageToast.ERROR, 'danger');
 
     throw new Error(MessageToast.ERROR);
   }
 
-  async showAlert(message: string) {
+  async showAlert(message: string, color: string) {
     const toast = await this.toastController.create({
       message: message,
       duration: 1500,
       position: 'top',
       mode: 'ios',
-      color: 'danger',
+      color: color,
       cssClass: `toast-icon toast-message`,
       buttons: [
         {
