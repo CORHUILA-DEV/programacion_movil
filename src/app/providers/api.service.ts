@@ -1,15 +1,52 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ToastController } from '@ionic/angular';
+import { lastValueFrom } from 'rxjs';
+import { MessageToast } from '../constants/messages.constants';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
+  constructor(
+    private httpClient: HttpClient,
+    private toastController: ToastController
+  ) {}
 
-  private url = 'https://api.slingacademy.com/v1/sample-data/photos?offset=5&limit=20'
+  async getData<T = unknown>(url: string): Promise<T> {
+    let source$ = this.httpClient.get<T>(url);
+    //const source$ = interval(2000).pipe(take(10));
+    try {
+      return await lastValueFrom(source$);
+    } catch (error) {
+      await this.handleError(error);
 
-  constructor(private httpClient: HttpClient) { }
+      throw error;
+    }
+  }
 
-  getData() {
-    return this.httpClient.get(this.url)
+  private handleError(error: any) {
+    this.showAlert(MessageToast.ERROR);
+
+    throw new Error(MessageToast.ERROR);
+  }
+
+  async showAlert(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500,
+      position: 'top',
+      mode: 'ios',
+      color: 'danger',
+      cssClass: `toast-icon toast-message`,
+      buttons: [
+        {
+          side: 'end', // Coloca el icono al lado derecho
+          icon: 'warning', // Cambia 'heart' por el nombre del icono que desees usar
+        },
+      ],
+    });
+
+    await toast.present();
   }
 }

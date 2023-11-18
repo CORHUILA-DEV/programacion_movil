@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { ApiService } from 'src/app/providers/api.service';
+import { DataPhotos, DetailPhotos } from 'src/app/entities/data-photos.entity';
+import { PersonInteractorService } from 'src/app/interactor/person.interactor.service';
 import { CameraService } from 'src/app/providers/camera.service';
 import { ClipboardService } from 'src/app/providers/clipboard.service';
 import { DeviceInfoService } from 'src/app/providers/device-info.service';
@@ -11,32 +12,39 @@ import { DeviceInfoService } from 'src/app/providers/device-info.service';
   styleUrls: ['./sistemas.page.scss'],
 })
 export class SistemasPage implements OnInit {
-  program: string = 'SOFTWARE'
-  data = [{ title: '', description: '', url: '' }]
-  pathImage = "assets/img/android.png"
-  file = ""
-  imageElement = ''
-  constructor(private apiService: ApiService,
+  program: string = 'SOFTWARE';
+  data: DetailPhotos[] = [];
+  pathImage = 'assets/img/android.png';
+  file = '';
+  imageElement = '';
+
+  constructor(
     private loadingCtrl: LoadingController,
     private clipboardService: ClipboardService,
     private deviceInfoService: DeviceInfoService,
-    private cameraService: CameraService) { }
+    private cameraService: CameraService,
+    private personInteractorService: PersonInteractorService
+  ) {}
 
   ngOnInit() {
-    this.showDeviceInfo()
-    this.showBatteryInfo()
+    /*     this.showDeviceInfo();
+    this.showBatteryInfo(); */
   }
 
   async getData() {
-    await this.showLoading()
-    setTimeout(() => {
-      this.apiService.getData().subscribe((response: any) => {
-        this.data = response.photos as []
-        console.log(this.data)
-        this.closeLoading()
-      })
-    }, 2000);
+    await this.showLoading();
+    try {
+      const data = await this.personInteractorService.getData<DataPhotos>();
+      console.log('R4spuesta: ');
+      console.log(data);
+      this.data = data.photos;
+    } catch (error: any) {
+      console.log(`Pailas:::`);
+      console.log(error.message);
+      this.closeLoading();
+    }
 
+    this.closeLoading();
   }
 
   async showLoading() {
@@ -49,23 +57,24 @@ export class SistemasPage implements OnInit {
   }
 
   closeLoading() {
-    this.loadingCtrl.dismiss()
+    this.loadingCtrl.dismiss();
   }
 
   showInfo(indice: number) {
-    this.clipboardService.copy(`La imagen seleccionada fue la No. ${indice.toString()}`);
+    this.clipboardService.copy(
+      `La imagen seleccionada fue la No. ${indice.toString()}`
+    );
   }
 
   showDeviceInfo() {
-    this.deviceInfoService.info()
+    this.deviceInfoService.info();
   }
 
   showBatteryInfo() {
-    this.deviceInfoService.batteryInfo()
+    this.deviceInfoService.batteryInfo();
   }
 
   async openCamera() {
-    this.imageElement = await this.cameraService.takePicture()
+    this.imageElement = await this.cameraService.takePicture();
   }
-
 }

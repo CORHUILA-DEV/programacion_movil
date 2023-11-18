@@ -3,11 +3,11 @@
 
 <ion-content>
   <img [src]="imageElement" alt="">
-  <!--   <ion-button (click)="getData()" expand="block" shape="round">
+  <ion-button (click)="getData()" expand="block" shape="round">
     Get Data
   </ion-button>
 
-  <div>
+  <div *ngIf="data">
     <ion-card *ngFor="let d of data; let indice = index" (click)="showInfo(indice+1)">
       <img [src]="d.url" alt="">
       <ion-card-header>
@@ -17,12 +17,12 @@
         {{d.description}}
       </ion-card-content>
     </ion-card>
-  </div> -->
+  </div>
 
 </ion-content>
 
-<ion-footer [translucent]="true" (click)="openCamera()">
+<!-- <ion-footer [translucent]="true" (click)="openCamera()">
   <ion-toolbar>
     <ion-title>Abrir camara</ion-title>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->
